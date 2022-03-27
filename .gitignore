@@ -4,3 +4,10 @@
 /go-cqhttp/device.json
 /go-cqhttp/session.token
 /go-cqhttp/address.txt
+
+data
+logs
+config.yml
+device.json
+session.token
+address.txt
