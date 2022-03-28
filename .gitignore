@@ -4,6 +4,7 @@
 /go-cqhttp/device.json
 /go-cqhttp/session.token
 /go-cqhttp/address.txt
+/api/__pycache__
 
 data
 logs
