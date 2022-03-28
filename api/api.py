@@ -1,11 +1,14 @@
 import requests
 import json
 
+with open("./port.txt", 'r', encoding='utf-8') as file:
+        http_port = int(file.read())
+address = "http://127.0.0.1:" + str(http_port)
 
-def keyword(message, uid, gid=None):
-    if message[0:3] == '300':  # 300查团分, 格式为300+游戏名称，如 “300yaq”
-        pass
-    if message[0:4] == 'setu':  # 你们懂的
-        pass
-    if message[0:4] == 'test':
-        print("Test!")
+def keyword(http_port,message, uid, gid=None):
+    address = "http://127.0.0.1:" + str(http_port)
+    if message[0:4] == 'ping':
+        if (gid == None):
+            requests.get(
+                url='http://127.0.0.1:5700/send_private_msg?user_id={0}&message={1}'.format(uid, "别叫了，我在"))
+    if (message[0:])
