@@ -1,33 +1,24 @@
-import yaml
-import os
+from flask import Flask, request
+from api import api
+app = Flask(__name__)
 
-if (os.path.exists("./config.yml")):
-    print("Find go-cqhttp Configuration......")
-else:
-    print("No go-cqhttp Configuration......")
-    os.system("pause")
-    exit()
-yamlPath="./config.yml"
-#with open(address, 'w', encoding='utf-8') as write_file:
-#    http_port = str(input("Enter your HTTP port:"))
-#    write_file.write("127.0.0.1:" + http_port)
+@app.route('/', methods=["POST"])
+def post_data():
+    if request.get_json().get('message_type') == 'private':  # 私聊信息
+        uid = request.get_json().get('sender').get('user_id')  # 获取信息发送者的 QQ号码
+        message = request.get_json().get('raw_message')  # 获取原始信息
+        keyword(message, uid)  # 将 Q号和原始信息传到我们的后台
+
+    if request.get_json().get('message_type') == 'group':  # 如果是群聊信息
+        gid = request.get_json().get('group_id')  # 获取群号
+        uid = request.get_json().get('sender').get('user_id')  # 获取信息发送者的 QQ号码
+        message = request.get_json().get('raw_message')  # 获取原始信息
+        keyword(message, uid, gid)  # 将 Q号和原始信息传到我们的后台
+
+    return "None"
 
 
-with open(yamlPath, 'r', encoding='utf-8') as file:
-    result = file.read()
-    bot_yml = yaml.safe_load(result)
-    print(bot_yml)
-    qq_num = int(input("Enter your QQ Number:"))
-    qq_passwd = str(
-        input("Enter your QQ password(if is empty then will scan the QRcode):"))
-    http_port = int(input("Enter your http port:"))
-    print("For more go-cqhttp Configuration, Edit the ./config.yml ......")
-    bot_yml["account"]["uin"] = qq_num
-    bot_yml["account"]["password"] = qq_passwd
-    bot_yml["servers"][0]["http"]["port"]=http_port
-    with open(yamlPath, 'w', encoding='utf-8') as write_file:
-        yaml.dump(bot_yml, write_file)
-
-print("Starting go-cqhttp Server on port......")
-os.system("./go-cqhttp/go-cqhttp fastboot")
-
+if __name__ == '__main__':
+    with open("./port.txt", 'r', encoding='utf-8') as file:
+       http_port = int(file.read()) 
+    app.run(debug=True, host='127.0.0.1', port=http_port)  # 此处的 host和 port对应上面 yml文件的设置
