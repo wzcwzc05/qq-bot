@@ -6,9 +6,12 @@
 /go-cqhttp/address.txt
 /api/__pycache__
 
+
 data
 logs
 config.yml
 device.json
 session.token
 address.txt
+flask.log
+.gitignore
