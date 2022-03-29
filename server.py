@@ -19,8 +19,9 @@ def post_data():
         api.keyword(http_port, message, uid, gid)
 
     return "None"
-
-
+@app.route('/test')
+def test():
+    pass
 if __name__ == '__main__':
 
     app.run(debug=True, host='0.0.0.0', port=8880)
