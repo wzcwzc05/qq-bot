@@ -25,8 +25,8 @@ def post_data():
 
 
 @app.route('/test')
-def test():
-    pass
+def test_pass():
+    return "Success"
 
 
 if __name__ == '__main__':
