@@ -1,6 +1,8 @@
 from multiprocessing import Process
 import os
 import requests
+import configparser
+#具体端口设计在main.ini中
 
 def go_cqhttp():
     os.system("python start.py")

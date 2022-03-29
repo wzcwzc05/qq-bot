@@ -1,7 +1,10 @@
 from flask import Flask, request
 from api import api
-with open("./port.txt", 'r', encoding='utf-8') as file:
-    http_port = int(file.read())
+import configparser
+
+config = configparser.ConfigParser()
+config.read('./main.ini')
+http_port = config.getint('go-cqhttp', 'port')
 app = Flask(__name__)
 
 
@@ -19,9 +22,13 @@ def post_data():
         api.keyword(http_port, message, uid, gid)
 
     return "None"
+
+
 @app.route('/test')
 def test():
     pass
-if __name__ == '__main__':
 
-    app.run(debug=True, host='0.0.0.0', port=8880)
+
+if __name__ == '__main__':
+    flask_port = config.getint('flask', 'port')
+    app.run(debug=True, host='0.0.0.0', port=flask_port)

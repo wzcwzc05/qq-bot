@@ -1,6 +1,9 @@
 import yaml
 import os
+import configparser
 
+config = configparser.ConfigParser()
+config.read('./main.ini')
 if (os.path.exists("./config.yml")):
     print("Find go-cqhttp Configuration......")
 else:
@@ -20,15 +23,16 @@ with open(yamlPath, 'r', encoding='utf-8') as file:
     qq_num = int(input("Enter your QQ Number:"))
     qq_passwd = str(
         input("Enter your QQ password(if is empty then will scan the QRcode):"))
-    http_port = int(input("Enter your http port:"))
+#    http_port = int(input("Enter your go-cqhttp port:"))
+    http_port = config.getint('go-cqhttp', 'port')
+    flask_port = config.getint('flask', 'port')
     print("For more go-cqhttp Configuration, Edit the ./config.yml ......")
     bot_yml["account"]["uin"] = qq_num
     bot_yml["account"]["password"] = qq_passwd
     bot_yml["servers"][0]["http"]["port"] = http_port
-#    bot_yml["servers"][0]["http"]["post"][0]["url"]=str("127.0.0.1:8880")
-#    bot_yml["servers"][0]["http"]["post"][0]["secret"]=""
-    with open("./port.txt", 'w', encoding='utf-8') as write_file:
-        write_file.write(str(http_port))
+    bot_yml["servers"][0]["http"]["post"][0]["url"] = "http://127.0.0.1:" + \
+        str(flask_port)
+    bot_yml["servers"][0]["http"]["post"][0]["secret"] = ""
     with open(yamlPath, 'w', encoding='utf-8') as write_file:
         yaml.dump(bot_yml, write_file)
 
