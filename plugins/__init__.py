@@ -1,2 +1,14 @@
+import os
 print("Initing Plugins Success!")
-__all__ = ['subpackage_1', 'subpackage_2']
+
+
+def GetAllKeys():
+    pass
+
+
+def GetAllPlugins():
+    File=os.listdir()
+    for i in File:
+        if (File[i].)
+GetAllPlugins()
+__all__ = ['api']
