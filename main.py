@@ -17,7 +17,7 @@ def go_cqhttp():
 
 
 def server():
-    os.system("nohup python server.py > flask.log 2>&1 &")
+    os.system("nohup python server.py > ./logs/flask.log 2>&1 &")
 
 
 if __name__ == '__main__':
@@ -32,6 +32,7 @@ if __name__ == '__main__':
             break
         except Exception as e:
             time.sleep(0.5)
-    print('Flask Server started !')
+    print('Flask Server started ! Log in ./logs/flask.log ......')
     p_g = Process(target=go_cqhttp, args=())
     p_g.start()
+    

@@ -15,7 +15,6 @@ yamlPath = "./go-cqhttp/config.yml"
 with open(yamlPath, 'r', encoding='utf-8') as file:
     result = file.read()
     bot_yml = yaml.safe_load(result)
-    print(bot_yml)
     qq_num = int(input("Enter your QQ Number:"))
     qq_passwd = str(
         input("Enter your QQ password(if is empty then will scan the QRcode):"))
@@ -31,5 +30,5 @@ with open(yamlPath, 'r', encoding='utf-8') as file:
     with open(yamlPath, 'w', encoding='utf-8') as write_file:
         yaml.dump(bot_yml, write_file)
 
-print("Starting go-cqhttp Server on port......")
-os.system("cd go-cqhttp && ./go-cqhttp fastboot")
+print("Starting go-cqhttp Server on port...... ")
+os.system("cd go-cqhttp && ./go-cqhttp")

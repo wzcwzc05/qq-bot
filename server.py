@@ -1,5 +1,5 @@
 from flask import Flask, request
-from api import api
+from plugins import *
 import configparser
 
 config = configparser.ConfigParser()
@@ -27,7 +27,6 @@ def post_data():
 @app.route('/test')
 def test_pass():
     return "Success"
-
 
 if __name__ == '__main__':
     flask_port = config.getint('flask', 'port')
