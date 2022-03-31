@@ -1,4 +1,5 @@
 import os
+import json
 print("Initing Plugins Success!")
 
 
@@ -8,7 +9,12 @@ def GetAllKeys():
 
 def GetAllPlugins():
     File=os.listdir()
+    plugins_dir = []
     for i in File:
-        if (File[i].)
-GetAllPlugins()
+        if (os.path.isdir("./"+i)):
+            plugins_dir.append(i)
+    return plugins_dir
+
+print(GetAllPlugins())
+
 __all__ = ['api']
