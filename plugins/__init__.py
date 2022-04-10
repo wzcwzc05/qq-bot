@@ -1,9 +1,12 @@
 import os
 import json
-print("Initing Plugins Success!")
+print("Initing Plugins......")
+
+#获取当前路径
 
 
-def GetAllKeys():
+
+def GetAllKeys(path):
     pass
 
 
@@ -16,5 +19,9 @@ def GetAllPlugins():
     return plugins_dir
 
 print(GetAllPlugins())
-
-__all__ = ['api']
+if __name__=='__main__':
+    plugins = GetAllPlugins()
+    for i in plugins:
+        pass
+        
+__all__ = ['api/api.py']
