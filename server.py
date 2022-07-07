@@ -1,5 +1,5 @@
 from flask import Flask, request
-from plugins import *
+from plugins import api
 import configparser
 
 config = configparser.ConfigParser()
