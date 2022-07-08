@@ -13,7 +13,7 @@ http_port = config.getint('go-cqhttp', 'port')
 
 
 def go_cqhttp():
-    os.system("python start.py")
+    os.system("python go-cqhttp.py")
 
 
 def server():

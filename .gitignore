@@ -5,7 +5,7 @@
 /go-cqhttp/session.token
 /go-cqhttp/address.txt
 /api/__pycache__
-
+/plugins/__pycache__
 
 data
 logs

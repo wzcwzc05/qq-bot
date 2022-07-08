@@ -1,8 +1,8 @@
 import requests
 import json
+from plugins import MainClass
 
-
-def keyword(http_port, message, uid, gid=None):
+def enterance(http_port, message, uid, gid=None):
     address = "http://127.0.0.1:" + str(http_port)
     if message[0:4] == 'ping':
         if (gid == None):
