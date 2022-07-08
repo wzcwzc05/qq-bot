@@ -1,5 +1,5 @@
 from flask import Flask, request
-from plugins.api import *
+from plugins import *
 import configparser
 
 config = configparser.ConfigParser()
@@ -13,7 +13,7 @@ def post_data():
     if request.get_json().get('message_type') == 'private':
         uid = request.get_json().get('sender').get('user_id')
         message = request.get_json().get('raw_message')
-        api.enterance(http_port, message, uid)
+        plugins.api.enterance(http_port, message, uid)
 
     if request.get_json().get('message_type') == 'group':
         gid = request.get_json().get('group_id')
