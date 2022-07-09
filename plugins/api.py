@@ -1,8 +1,12 @@
 import requests
 import json
-from plugins import MainClass
+from plugins import ClassMain
+import plugins
 
 def enterance(http_port, message, uid, gid=None):
+    with open("./plugins/plugins.json", 'r') as load_f:
+        PluginsData = json.load(load_f)
+    print(PluginsData)
     address = "http://127.0.0.1:" + str(http_port)
     if message[0:4] == 'ping':
         if (gid == None):
