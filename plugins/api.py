@@ -6,7 +6,7 @@ import plugins
 
 
 def enterance(http_port, message, uid, gid=None):
-    
+
     with open("./plugins/plugins.json", 'r') as load_f:
         PluginsData = json.load(load_f)
     print(PluginsData)
@@ -14,9 +14,8 @@ def enterance(http_port, message, uid, gid=None):
     address = "http://127.0.0.1:" + str(http_port)
 
     for plugin in PluginsList:
-        print("!!!!!!", plugin["name"])
         if (plugin["type"] == "command") and (plugin["active"] == True):
-           # __import__(plugin["name"])
+            #__import__(plugin["name"])
             if (plugin["commands"]["IsGroup"] == False) and (gid != None):
                 continue
             if (plugin["commands"]["IsPrivate"] == False) and (gid == None):
@@ -29,7 +28,6 @@ def enterance(http_port, message, uid, gid=None):
                         break
                 if (flag == False):
                     continue
-            print("!!!!!!", plugin["name"])
             StrictMode = plugin["commands"]["strict"]
             entry = plugin["entry"]
 
@@ -47,4 +45,5 @@ def enterance(http_port, message, uid, gid=None):
                 for word in plugin["commands"]["words"]:
                     if (message.find(word) != -1):
                         pass
-
+        if (plugin["type"] == "schedule") and (plugin["active"] == True):
+            pass

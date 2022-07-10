@@ -1,5 +1,6 @@
 {
     "name": "test",
+    "entry": "ping",
     "active": true,
     "version": "1.0.0",
     "description": "test plugin",
