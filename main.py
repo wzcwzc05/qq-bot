@@ -19,11 +19,10 @@ def go_cqhttp():
 def server():
     os.system("nohup python server.py > ./logs/flask.log 2>&1 &")
 
-def Listening_Pro():
-    pass
-
 if __name__ == '__main__':
     process_list = []
+    print("Starting Listensing Server...")
+    time.sleep(1)
     p_s = Process(target=server, args=())
     p_s.start()
     Flag = True
@@ -34,7 +33,9 @@ if __name__ == '__main__':
             break
         except Exception as e:
             time.sleep(0.5)
-    print('Flask Server started ! Log in ./logs/flask.log ......')
+    print('Flask Server has started ! Log in ./logs/flask.log ......')
+    time.sleep(1)
+    
     p_g = Process(target=go_cqhttp, args=())
     p_g.start()
     print("message dealing...")

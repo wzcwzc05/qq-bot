@@ -1,0 +1,17 @@
+{
+    "name": "test",
+    "active": true,
+    "version": "1.0.0",
+    "description": "test plugin",
+    "author": "test",
+    "type": "command",
+    "commands": {
+        "IsGroup": false,
+        "IsPrivate": true,
+        "uid": [],
+        "strict": true,
+        "words": [
+            "ping"
+        ]
+    }
+}

@@ -2,6 +2,8 @@
     "plugins": [
         {
             "name": "test",
+            "active": true,
+            "entry": "ping",
             "version": "1.0.0",
             "description": "test plugin",
             "author": "test",
@@ -9,8 +11,8 @@
             "commands": {
                 "IsGroup": false,
                 "IsPrivate": true,
-                "uid":[],
                 "strict":  true,
+                "uid": [],
                 "words": [
                     "ping"
                 ]

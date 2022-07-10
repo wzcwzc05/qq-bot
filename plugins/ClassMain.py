@@ -11,4 +11,5 @@ class MessageEvent():
         self.IsPrivate=IsPrivate
         self.Message=Message
         self.uid=uid
-        
+
+      
