@@ -6,12 +6,13 @@ import plugins
 
 
 def enterance(http_port, message, uid, gid=None):
+    
     with open("./plugins/plugins.json", 'r') as load_f:
         PluginsData = json.load(load_f)
     print(PluginsData)
     PluginsList = PluginsData["plugins"]
     address = "http://127.0.0.1:" + str(http_port)
-    print("!!!!!!", address)
+
     for plugin in PluginsList:
         print("!!!!!!", plugin["name"])
         if (plugin["type"] == "command") and (plugin["active"] == True):

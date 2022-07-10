@@ -9,6 +9,7 @@
         "IsGroup": false,
         "IsPrivate": true,
         "uid": [],
+        "gid": [],
         "strict": true,
         "words": [
             "ping"

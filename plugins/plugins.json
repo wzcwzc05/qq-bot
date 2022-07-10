@@ -3,7 +3,6 @@
         {
             "name": "test",
             "active": true,
-            "entry": "ping",
             "version": "1.0.0",
             "description": "test plugin",
             "author": "test",
@@ -11,8 +10,27 @@
             "commands": {
                 "IsGroup": false,
                 "IsPrivate": true,
-                "strict":  true,
                 "uid": [],
+                "gid": [],
+                "strict": true,
+                "words": [
+                    "ping"
+                ]
+            }
+        },
+        {
+            "name": "test",
+            "active": true,
+            "version": "1.0.0",
+            "description": "test plugin",
+            "author": "test",
+            "type": "command",
+            "commands": {
+                "IsGroup": false,
+                "IsPrivate": true,
+                "uid": [],
+                "gid": [],
+                "strict": true,
                 "words": [
                     "ping"
                 ]
