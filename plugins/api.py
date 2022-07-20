@@ -43,6 +43,16 @@ def enterance(http_port, message, uid, gid=None):
             else:
                 for word in plugin["commands"]["words"]:
                     if (message.find(word) != -1):
-                        pass
+                        Exec = "plugins." + \
+                            plugin["name"]+"."+plugin["entry"] + \
+                            "."+plugin["name"]
+                        if (gid == None):
+                            Temp = eval(Exec)(
+                                http_port, False, True, message, uid, gid)
+                        else:
+                            Temp = eval(Exec)(
+                                http_port, True, False, message, uid, gid)
+                        Temp.MessageDeal()
+                        
         if (plugin["type"] == "schedule") and (plugin["active"] == True):
             pass

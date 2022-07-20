@@ -1,6 +1,9 @@
 from flask import Flask, request
 from plugins import *
 import configparser
+import os
+import signal
+
 
 config = configparser.ConfigParser()
 config.read('./main.ini')
@@ -28,6 +31,10 @@ def post_data():
 def test_pass():
     return "Success"
 
+@app.route("/stop")
+def stop():
+    os._exit(0)
+    
 if __name__ == '__main__':
     flask_port = config.getint('flask', 'port')
     app.run(debug=True, host='0.0.0.0', port=flask_port)
