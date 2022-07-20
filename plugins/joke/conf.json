@@ -1,0 +1,19 @@
+{
+    "name": "joke",
+    "entry": "main",
+    "active": true,
+    "version": "1.0.0",
+    "description": "Tell A Joke",
+    "author": "wzcwzc05",
+    "type": "command",
+    "commands": {
+        "IsGroup": false,
+        "IsPrivate": true,
+        "uid": [],
+        "gid": [],
+        "strict": true,
+        "words": [
+            "讲个笑话"
+        ]
+    }
+}

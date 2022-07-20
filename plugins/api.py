@@ -9,7 +9,6 @@ def enterance(http_port, message, uid, gid=None):
 
     with open("./plugins/plugins.json", 'r') as load_f:
         PluginsData = json.load(load_f)
-    print(PluginsData)
     PluginsList = PluginsData["plugins"]
     address = "http://127.0.0.1:" + str(http_port)
 
@@ -29,16 +28,16 @@ def enterance(http_port, message, uid, gid=None):
                 if (flag == False):
                     continue
             StrictMode = plugin["commands"]["strict"]
-            entry = plugin["entry"]
 
             if (StrictMode == True):
                 for word in plugin["commands"]["words"]:
                     if (message == word):
+                        Exec = "plugins."+plugin["name"]+"."+plugin["entry"]+"."+plugin["name"]
                         if (gid == None):
-                            Temp = plugins.plugin["name"].plugin["entry"].plugin["name"](
+                            Temp = eval(Exec)(
                                 http_port, False, True, message, uid, gid)
                         else:
-                            Temp = plugins.plugin["name"].plugin["entry"].plugin["name"](
+                            Temp = eval(Exec)(
                                 http_port, True, False, message, uid, gid)
                         Temp.MessageDeal()
             else:
