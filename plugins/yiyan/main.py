@@ -11,8 +11,11 @@ class yiyan(plugins.ClassMain.MessageEvent):
         address = "http://127.0.0.1:" + str(self.Http)
         Joke = requests.get(
             "https://api.muxiaoguo.cn/api/yiyan?api_key=4ef64f29d4dd13fb")
-        message = json.loads(Joke.text)["data"]["constant"]
-        author = "——————"+json.loads(Joke.text)["data"]["source"]
+        message = json.loads(Joke.text)["data"]["content"]
+        if (json.loads(Joke.text)["data"]["derivation"]!=None):
+            author = "——————" + json.loads(Joke.text)["data"]["derivation"]
+        else:
+            author = ""
         if (self.gid == None):
             requests.get(
                 url=address + '/send_private_msg?user_id={0}&message={1}'.format(self.uid, message+author))
