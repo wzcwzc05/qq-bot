@@ -8,12 +8,13 @@ class MessageEvent():
     Message = ""
     uid = ""
 
-    def __init__(self, Http_Port, IsGroup, IsPrivate, Message, uid) -> None:
+    def __init__(self, Http_Port, IsGroup, IsPrivate, Message, uid, gid=None) -> None:
         self.Http = Http_Port
         self.IsGroup = IsGroup
         self.IsPrivate = IsPrivate
         self.Message = Message
         self.uid = uid
+        self.gid = gid
 
     def MessageDeal(self):
         raise NotImplementedError("Not implemented!")

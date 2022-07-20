@@ -15,7 +15,7 @@ def enterance(http_port, message, uid, gid=None):
 
     for plugin in PluginsList:
         if (plugin["type"] == "command") and (plugin["active"] == True):
-            #__import__(plugin["name"])
+            # __import__(plugin["name"])
             if (plugin["commands"]["IsGroup"] == False) and (gid != None):
                 continue
             if (plugin["commands"]["IsPrivate"] == False) and (gid == None):
@@ -35,12 +35,12 @@ def enterance(http_port, message, uid, gid=None):
                 for word in plugin["commands"]["words"]:
                     if (message == word):
                         if (gid == None):
-                            requests.get(
-                                url=address + '/send_private_msg?user_id={0}&message={1}'.format(uid, "别叫了，我在"))
-                        elif (gid != None):
-                            requests.get(
-                                url=address + '/send_group_msg?group_id={0}&message={1}'.format(gid, "别叫了，我在"))
-
+                            Temp = plugins.plugin["name"].plugin["entry"].plugin["name"](
+                                http_port, False, True, message, uid, gid)
+                        else:
+                            Temp = plugins.plugin["name"].plugin["entry"].plugin["name"](
+                                http_port, True, False, message, uid, gid)
+                        Temp.MessageDeal()
             else:
                 for word in plugin["commands"]["words"]:
                     if (message.find(word) != -1):

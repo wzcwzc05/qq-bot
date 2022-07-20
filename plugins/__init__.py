@@ -30,6 +30,5 @@ PluginsList = PluginsData["plugins"]
 for i in PluginsList:
     if (i["active"]==True):
         print("name:",i["name"], i["version"], "type:",i["type"])
+        __import__("plugins."+i["name"]+"."+i["entry"])
 time.sleep(1.5)
-
-__all__ = ["api", "ClassMain"]
