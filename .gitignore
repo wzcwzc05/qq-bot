@@ -6,8 +6,10 @@
 /go-cqhttp/address.txt
 /api/__pycache__
 /plugins/__pycache__
+/plugins/joke
 /*/__pycache__
 /*/*/__pycache__
+
 data
 logs
 config.yml

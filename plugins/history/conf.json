@@ -1,0 +1,19 @@
+{
+    "name": "history",
+    "entry": "main",
+    "active": true,
+    "version": "1.0.0",
+    "description": "历史上的今天",
+    "author": "wzcwzc05",
+    "type": "command",
+    "commands": {
+        "IsGroup": false,
+        "IsPrivate": true,
+        "uid": [],
+        "gid": [],
+        "strict": true,
+        "words": [
+            "历史上的今天"
+        ]
+    }
+}

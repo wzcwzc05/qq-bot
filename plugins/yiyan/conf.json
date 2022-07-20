@@ -1,0 +1,21 @@
+{
+    "name": "yiyan",
+    "entry": "main",
+    "active": true,
+    "version": "1.0.0",
+    "description": "一言:苦到头未必是甜的，而甜到头一定是苦的",
+    "author": "wzcwzc05",
+    "type": "command",
+    "commands": {
+        "IsGroup": false,
+        "IsPrivate": true,
+        "uid": [],
+        "gid": [],
+        "strict": true,
+        "words": [
+            "今日鸡汤",
+            "来点鸡汤",
+            "我要鸡汤"
+        ]
+    }
+}
