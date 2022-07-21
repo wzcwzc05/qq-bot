@@ -5,7 +5,7 @@ from plugins import ClassMain
 import plugins
 
 
-def enterance(http_port, message, uid, gid=None):
+def enterance(http_port, message, uid, gid=None):       # 进入插件系统
 
     with open("./plugins/plugins.json", 'r') as load_f:
         PluginsData = json.load(load_f)
@@ -13,8 +13,7 @@ def enterance(http_port, message, uid, gid=None):
     address = "http://127.0.0.1:" + str(http_port)
 
     for plugin in PluginsList:
-        if (plugin["type"] == "command") and (plugin["active"] == True):
-            # __import__(plugin["name"])
+        if (plugin["type"] == "command") and (plugin["active"] == True):        # 如果是命令插件且插件处于激活状态
             if (plugin["commands"]["IsGroup"] == False) and (gid != None):
                 continue
             if (plugin["commands"]["IsPrivate"] == False) and (gid == None):
@@ -27,22 +26,12 @@ def enterance(http_port, message, uid, gid=None):
                         break
                 if (flag == False):
                     continue
+            # 获取是否严格匹配模式
             StrictMode = plugin["commands"]["strict"]
 
             if (StrictMode == True):
                 for word in plugin["commands"]["words"]:
-                    if (message == word):
-                        Exec = "plugins."+plugin["name"]+"."+plugin["entry"]+"."+plugin["name"]
-                        if (gid == None):
-                            Temp = eval(Exec)(
-                                http_port, False, True, message, uid, gid)
-                        else:
-                            Temp = eval(Exec)(
-                                http_port, True, False, message, uid, gid)
-                        Temp.MessageDeal()
-            else:
-                for word in plugin["commands"]["words"]:
-                    if (message.find(word) != -1):
+                    if (message == word):                                   # 如果严格匹配到了指定的指令
                         Exec = "plugins." + \
                             plugin["name"]+"."+plugin["entry"] + \
                             "."+plugin["name"]
@@ -53,6 +42,19 @@ def enterance(http_port, message, uid, gid=None):
                             Temp = eval(Exec)(
                                 http_port, True, False, message, uid, gid)
                         Temp.MessageDeal()
-                        
-        if (plugin["type"] == "schedule") and (plugin["active"] == True):
+            else:
+                for word in plugin["commands"]["words"]:
+                    if (message.find(word) != -1):                          # 如果匹配到了关键词
+                        Exec = "plugins." + \
+                            plugin["name"]+"."+plugin["entry"] + \
+                            "."+plugin["name"]
+                        if (gid == None):
+                            Temp = eval(Exec)(
+                                http_port, False, True, message, uid, gid)
+                        else:
+                            Temp = eval(Exec)(
+                                http_port, True, False, message, uid, gid)
+                        Temp.MessageDeal()
+
+        if (plugin["type"] == "schedule") and (plugin["active"] == True):       # 如果是定时插件且插件处于激活状态（未开发完成）
             pass

@@ -1,9 +1,9 @@
 {
-    "name": "test",
+    "name": "example",
     "entry": "main",
     "active": true,
     "version": "1.0.0",
-    "description": "test plugin",
+    "description": "example plugin",
     "author": "test",
     "type": "command",
     "commands": {
