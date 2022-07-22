@@ -2,6 +2,9 @@ import json
 import time
 import os
 
+def CheckPlugins(plugin):
+    return True
+
 if not(os.path.exists("./plugins/plugins.json")):                       # 如果插件总体配置文件不存在则报错
     print("[ERROR] The Configuration of plugin system isn't existed!")
     time.sleep(1)
@@ -40,9 +43,18 @@ with open("./plugins/plugins.json", 'r') as load_f:
 PluginsList = PluginsData["plugins"]
 
 for i in PluginsList:
+    if (CheckPlugins(i) == False):
+        print("[ERROR] Plugin: " + i["name"] + " is broken!")
+        PluginsList.remove(i)
+        continue
+    
     if (i["active"]==True):
         print("name:",i["name"], i["version"], "type:",i["type"])
         __import__("plugins."+i["name"]+"."+i["entry"])
         
+PluginsData["plugins"] = PluginsList
+with open("./plugins/plugins.json", 'w') as dump_f:
+    json.dump(PluginsData, dump_f)
+            
 print("[OK]")
 time.sleep(1.5)
