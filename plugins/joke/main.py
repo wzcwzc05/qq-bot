@@ -12,9 +12,7 @@ class joke(plugins.ClassMain.MessageEvent):
             "https://api.muxiaoguo.cn/api/xiaohua?api_key=5c3c4cd312256538")
         message = json.loads(Joke.text)["data"]["content"]
         if (self.gid == None):
-            requests.get(
-                url=address + '/send_private_msg?user_id={0}&message={1}'.format(self.uid, message))
+            self.SendPrivateMessage(self.uid, message)
         elif (self.gid != None):
-            requests.get(
-                url=address + '/send_group_msg?group_id={0}&message={1}'.format(self.gid, message))
+            self.SendGroupMessage(self.gid, message)
 

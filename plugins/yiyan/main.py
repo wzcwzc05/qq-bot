@@ -17,8 +17,6 @@ class yiyan(plugins.ClassMain.MessageEvent):
         else:
             author = ""
         if (self.gid == None):
-            requests.get(
-                url=address + '/send_private_msg?user_id={0}&message={1}'.format(self.uid, message+author))
+            self.SendPrivateMessage(self.uid, message + author)
         elif (self.gid != None):
-            requests.get(
-                url=address + '/send_group_msg?group_id={0}&message={1}'.format(self.gid, message+author))
+            self.SendGroupMessage(self.gid, message + author)

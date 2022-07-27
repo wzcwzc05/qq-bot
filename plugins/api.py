@@ -3,6 +3,8 @@ import json
 import time
 from plugins import ClassMain
 import plugins
+import logging
+import os
 
 
 def enterance(http_port, message, uid, gid=None):       # 进入插件系统
@@ -11,6 +13,13 @@ def enterance(http_port, message, uid, gid=None):       # 进入插件系统
         PluginsData = json.load(load_f)
     PluginsList = PluginsData["plugins"]
     address = "http://127.0.0.1:" + str(http_port)
+    
+    logger = logging.getLogger("logger")
+    logger.setLevel(logging.INFO)
+    fh = logging.FileHandler("./logs/api.log", encoding="UTF-8")
+    formator = logging.Formatter(fmt="%(asctime)s %(filename)s %(levelname)s %(message)s",
+                                 datefmt="%Y/%m/%d %X")
+    fh.setFormatter(formator)
 
     for plugin in PluginsList:
         if (plugin["type"] == "command") and (plugin["active"] == True):        # 如果是命令插件且插件处于激活状态
@@ -56,5 +65,6 @@ def enterance(http_port, message, uid, gid=None):       # 进入插件系统
                                 http_port, True, False, message, uid, gid)
                         Temp.MessageDeal()
 
-        if (plugin["type"] == "schedule") and (plugin["active"] == True):       # 如果是定时插件且插件处于激活状态（未开发完成）
+        # 如果是定时插件且插件处于激活状态（未开发完成）
+        if (plugin["type"] == "schedule") and (plugin["active"] == True):
             pass

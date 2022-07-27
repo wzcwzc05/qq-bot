@@ -20,8 +20,6 @@ class history(plugins.ClassMain.MessageEvent):
         day = message["day"]
         title = message["title"]
         if (self.gid == None):
-            requests.get(
-                url=address + '/send_private_msg?user_id={0}&message={1}'.format(self.uid, year+"年"+month+"月"+day+"日————"+title))
+            self.SendPrivateMessage(self.uid, "历史上的今天是" + str(year) + "年" + str(month) + "月" + str(day) + "日，" + title)
         elif (self.gid != None):
-            requests.get(
-                url=address + '/send_group_msg?group_id={0}&message={1}'.format(self.gid, year+"年"+month+"月"+day+"日————"+title))
+            self.SendGroupMessage(self.gid, "历史上的今天是" + str(year) + "年" + str(month) + "月" + str(day) + "日，" + title)
