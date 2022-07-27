@@ -1,6 +1,18 @@
 import json
 import time
 import os
+import logging
+import plugins.api
+import plugins.ClassMain
+
+
+logger = logging.getLogger("logger")
+logger.setLevel(logging.INFO)
+fh = logging.FileHandler("./logs/api.log", encoding="UTF-8")
+formator = logging.Formatter(fmt="%(asctime)s %(filename)s %(levelname)s %(message)s",
+                             datefmt="%Y/%m/%d %X")
+fh.setFormatter(formator)
+logger.addHandler(fh)
 
 def CheckPlugins(plugin):
     return True

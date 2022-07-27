@@ -1,5 +1,4 @@
 import requests
-from plugins import api
 import logging
 
 
@@ -17,34 +16,20 @@ class MessageEvent():               # 消息事件类
         self.Message = Message
         self.uid = uid
         self.gid = gid
-        logger = logging.getLogger("logger")
-        logger.setLevel(logging.INFO)
-        fh = logging.FileHandler("./logs/api.log", encoding="UTF-8")
-        formator = logging.Formatter(fmt="%(asctime)s %(filename)s %(levelname)s %(message)s",
-                                     datefmt="%Y/%m/%d %X")
-        fh.setFormatter(formator)
-        logger.addHandler(fh)
-        logger.info(type(self).__name__ + ": " + "Init Successful!")
-
+        self.logger =  logging.getLogger("logger")
+        
     def MessageDeal(self):          # 消息处理函数
         raise NotImplementedError("MessageDeal Not implemented!")
 
-    def _logm(self):                                        # 日志输出函数
-        logger = logging.getLogger("logger")
-        logger.setLevel(logging.INFO)
-        fh = logging.FileHandler("./logs/api.log", encoding="UTF-8")
-        formator = logging.Formatter(fmt="%(asctime)s %(filename)s %(levelname)s %(message)s",
-                                     datefmt="%Y/%m/%d %X")
-        fh.setFormatter(formator)
-        logger.addHandler(fh)
-        return logger
+    def _logm(self): 
+        return self.logger
 
-    def SendPrivateMessage(self, uid, message):                 # 发送私人消息
+    def SendPrivateMessage(self, uid, message):             # 发送私人消息
         address = "http://127.0.0.1:" + str(self.Http)
         try:
             requests.get(
                 url=address + '/send_private_msg?user_id={0}&message={1}'.format(uid, message))
-            self._logm().error(type(self).__name__ +
+            self._logm().info(type(self).__name__ +
                                ": Send private message to {0} successfully!".format(uid))
         except requests.exceptions.ConnectionError:
             self._logm().error(type(self).__name__ + ": ---ConnectionError---")
@@ -60,7 +45,7 @@ class MessageEvent():               # 消息事件类
         try:
             requests.get(
                 url=address + '/send_group_msg?group_id={0}&message={1}'.format(gid, message))
-            self._logm().error(type(self).__name__ +
+            self._logm().info(type(self).__name__ +
                                ": Send group message to {0} successfully!".format(gid))
         except requests.exceptions.ConnectionError:
             self._logm().error(type(self).__name__ + ": ---ConnectionError---")

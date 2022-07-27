@@ -34,7 +34,9 @@ def breakdown(e1, e2):
     
 if __name__ == '__main__':
     sysstr = platform.system()
-    
+    with open("./logs/api.log", 'w', encoding='utf-8') as write_file:
+        write_file = ""
+
     if (sysstr == "Windows"):
         print("Windows isn't Fully Supported! Please manually run the server.py and go-cqhttp.py")
         os.system("pause")

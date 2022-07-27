@@ -1,6 +1,4 @@
 import plugins.ClassMain
-import requests
-import logging
 
 class example(plugins.ClassMain.MessageEvent):             #从plugins.ClassMain.MessageEvent继承
     def __init__(self, Http_Port, IsGroup, IsPrivate, Message, uid, gid=None) -> None:

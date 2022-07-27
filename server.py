@@ -2,8 +2,7 @@ from flask import Flask, request
 import plugins
 import configparser
 import os
-import signal
-
+import cProfile
 
 config = configparser.ConfigParser()
 config.read('./main.ini')
@@ -18,6 +17,9 @@ def post_data():
         message = request.get_json().get('raw_message')
         # 发送调用plugins.api.enterance函数，进入插件系统
         plugins.api.enterance(http_port, message, uid)
+#        st = "plugins.api.enterance({},{},{})".format(
+#           str(http_port), str('"'+message+'"'), str(uid))
+#        cProfile.run(st,"result.out")
 
     if request.get_json().get('message_type') == 'group':
         gid = request.get_json().get('group_id')
