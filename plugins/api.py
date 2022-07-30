@@ -2,12 +2,18 @@ import json
 import logging
 import os
 import plugins
+import plugins.globalvar as gl
 
-def enterance(http_port, message, uid, gid=None):       # 进入插件系统
-    
-    with open("./plugins/plugins.json", 'r') as load_f:
-        PluginsData = json.load(load_f)
-    PluginsList = PluginsData["plugins"]
+
+def enterance(http_port: int, message: str, uid: int, gid=None) -> None:       # 进入插件系统
+
+    if gl.get_value("plugins_list") == None:
+        with open("./plugins/plugins.json", 'r') as load_f:
+            PluginsData = json.load(load_f)
+        PluginsList = PluginsData["plugins"]
+        gl.set_value("plugins_list", PluginsList)
+    else:
+        PluginsList = gl.get_value("plugins_list")
     address = "http://127.0.0.1:" + str(http_port)
 
     for plugin in PluginsList:

@@ -3,6 +3,9 @@ import plugins
 import configparser
 import os
 import cProfile
+import plugins.globalvar as gl
+
+gl.init()
 
 config = configparser.ConfigParser()
 config.read('./main.ini')

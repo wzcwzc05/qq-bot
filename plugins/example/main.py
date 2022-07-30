@@ -10,4 +10,3 @@ class example(plugins.ClassMain.MessageEvent):             #从plugins.ClassMain
             self.SendPrivateMessage(self.uid, "Hello,World!")       
         elif (self.gid != None):
             self.SendGroupMessage(self.gid, "Hello,World!")
-        
