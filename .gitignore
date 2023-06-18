@@ -1,6 +1,5 @@
 /go-cqhttp/data
 /go-cqhttp/logs
-/go-cqhttp/config.yml
 /go-cqhttp/device.json
 /go-cqhttp/session.token
 /go-cqhttp/address.txt
